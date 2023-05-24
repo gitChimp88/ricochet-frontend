@@ -1,4 +1,4 @@
-<svg version="1.1" id="Layer_1" xmlns:x="&amp;ns_extend;" xmlns:i="&amp;ns_ai;" xmlns:graph="&amp;ns_graphs;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 128 128" style="enable-background:new 0 0 128 128;" xml:space="preserve" height="32" width="32">
+<svg version="1.1" id="Layer_1" xmlnsX="&amp;ns_extend;" xmlnsI="&amp;ns_ai;" xmlnsGraph="&amp;ns_graphs;" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 128 128" style="enable-background:new 0 0 128 128;" xmlSpace="preserve" height="32" width="32">
 <style type="text/css">
 	.st0{fill:url(#SVGID_1_);stroke:#000000;stroke-width:0.75;stroke-miterlimit:10;}
 	.st1{fill:none;stroke:#F1F2F2;stroke-width:0.5;stroke-miterlimit:10;}
@@ -96,10 +96,10 @@
 </style>
 <switch>
 	<foreignObject requiredExtensions="&amp;ns_ai;" x="0" y="0" width="1" height="1">
-		<i:pgfref xlink:href="#adobe_illustrator_pgf">
-		</i:pgfref>
+		<iPgfref xlinkHref="#adobe_illustrator_pgf">
+		</iPgfref>
 	</foreignObject>
-	<g i:extraneous="self">
+	<g iExtraneous="self">
 		<radialGradient id="SVGID_1_" cx="64" cy="64" r="64" gradientUnits="userSpaceOnUse">
 			<stop offset="4.469206e-03" style="stop-color:#E8EEF7"></stop>
 			<stop offset="1" style="stop-color:#88A1C0"></stop>
@@ -821,7 +821,7 @@
 		</g>
 	</g>
 </switch>
-<i:pgf id="adobe_illustrator_pgf">
+<iPgf id="adobe_illustrator_pgf">
 	
 	eJzsvWmvHMmVJfg9gfwPMR8KkBrFkNturmkM8OItNZopLVCq1CoUGgmK+ZRii0kmmEyp1b9+zrlm
 5otdi/fikVS2NEV6VYqM8HC35dq95+7/9H/86otnV1+9+f39M3ecDp9/9k//dP32/vm7N29/epCP
@@ -14505,5 +14505,5 @@ RedMNE+CfvD1v8MDTYqQSF4taoRdEFrrxHH2wa3+3c3Cvnr34c5zOg/94uWrxw+H3/7l486RX14+
 +mMqcfMdPh34G+Lvz74s/2MO528e/v74/pe/tH/42VcPrx7/6/3Da3Nff/qTVx8e/vp4eHj7Fvfw
 8Tv7rw6v3j9++Pju/ePhw7fv/sa/8EenP/jZz7747b/99Cf/B3c/bw8=
 	
-</i:pgf>
+</iPgf>
 </svg>

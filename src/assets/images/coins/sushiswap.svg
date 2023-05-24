@@ -5,31 +5,31 @@
    viewBox="0 0 32 32"
    version="1.1"
    id="svg71"
-   sodipodi:docname="sushiswap.svg"
-   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
+   sodipodiDocname="sushiswap.svg"
+   inkscapeVersion="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   xmlnsInkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlnsSodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlnsXlink="http://www.w3.org/1999/xlink"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:svg="http://www.w3.org/2000/svg">
-  <sodipodi:namedview
+   xmlnsSvg="http://www.w3.org/2000/svg">
+  <sodipodiNamedview
      id="namedview73"
      pagecolor="#ffffff"
      bordercolor="#666666"
      borderopacity="1.0"
-     inkscape:pageshadow="2"
-     inkscape:pageopacity="0.0"
-     inkscape:pagecheckerboard="0"
+     inkscapePageshadow="2"
+     inkscapePageopacity="0.0"
+     inkscapePagecheckerboard="0"
      showgrid="false"
-     inkscape:zoom="12.515625"
-     inkscape:cx="56.529338"
-     inkscape:cy="8.0299625"
-     inkscape:window-width="1920"
-     inkscape:window-height="1009"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="svg71" />
+     inkscapeZoom="12.515625"
+     inkscapeCx="56.529338"
+     inkscapeCy="8.0299625"
+     inkscapeWindow-width="1920"
+     inkscapeWindow-height="1009"
+     inkscapeWindow-x="-8"
+     inkscapeWindow-y="-8"
+     inkscapeWindow-maximized="1"
+     inkscapeCurrent-layer="svg71" />
   <defs
      id="defs57">
     <linearGradient
@@ -112,7 +112,7 @@
     <clipPath
        id="SVGID_2_">
       <use
-         xlink:href="#SVGID_1_"
+         xlinkHref="#SVGID_1_"
          style="overflow:visible"
          id="use160"
          x="0"
