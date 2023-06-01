@@ -20,7 +20,7 @@ const App: React.FC = () => {
 	useEffect(() => {
 		debugger;
 		console.log('web3 - ', web3);
-		if (web3._provider) {
+		if (web3.currentProvider) {
 			dispatch(mainGetData());
 		}
 	}, [dispatch, web3]);
