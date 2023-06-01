@@ -130,6 +130,7 @@ export const startFlow = async (
 		});
 		const { maxFeePerGas, maxPriorityFeePerGas } = await gas();
 		if (web3Subscription.approved) {
+			debugger;
 			const transactionData = {
 				superToken: inputTokenAddress,
 				sender: address,
@@ -148,6 +149,7 @@ export const startFlow = async (
 			console.log(tx);
 			return tx;
 		} else {
+			debugger;
 			const userData = referralId ? web3.eth.abi.encodeParameter('string', referralId) : '0x';
 			if (
 				exchangeAddress === usdcxRicExchangeAddress ||

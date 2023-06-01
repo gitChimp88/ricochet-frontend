@@ -18,6 +18,7 @@ import { selectMain } from '../selectors';
 import { getCoingeckoPrices } from '../../../utils/getCoingeckoPrices';
 
 export function* loadData() {
+	debugger;
 	try {
 		console.log('loadData');
 		yield put(mainSetState({ isLoading: true, isReadOnly: false }));
@@ -30,17 +31,18 @@ export function* loadData() {
 		const coingeckoPrices: Unwrap<typeof getCoingeckoPrices> = yield call(getCoingeckoPrices);
 		console.log('coingeckoPrices: ', coingeckoPrices);
 		yield call(getBalances, address);
-		yield all([
-			call(checkIfApproveUsdc),
-			call(checkIfApproveDai),
-			call(checkIfApproveWeth),
-			call(checkIfApproveWbtc),
-			call(checkIfApproveMatic),
-			call(checkIfApproveIbAlluoUSD),
-			call(checkIfApproveIbAlluoETH),
-			call(checkIfApproveIbAlluoBTC),
-			call(sweepQueryFlow),
-		]);
+
+		yield call(checkIfApproveUsdc);
+		yield call(checkIfApproveDai);
+		yield call(checkIfApproveWeth);
+		yield call(checkIfApproveWbtc);
+		yield call(checkIfApproveMatic);
+		yield call(checkIfApproveIbAlluoUSD);
+		yield call(checkIfApproveIbAlluoETH);
+		yield call(checkIfApproveIbAlluoBTC);
+		debugger;
+		yield call(sweepQueryFlow);
+
 		yield put(
 			mainSetState({
 				address,

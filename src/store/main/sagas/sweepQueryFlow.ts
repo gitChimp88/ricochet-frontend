@@ -84,6 +84,7 @@ export function* sweepQueryFlow(): any {
 		const subsidyRate = 0;
 		const subsidyRateTotal = (subsidyRate * 30 * 24 * 60 * 60) / 1e18;
 		const subsidyRatePerso = (subsidyRateTotal * outgoing) / totalFlow;
+		debugger;
 		const RIC = getContract(RICAddress, erc20ABI, web3);
 		const exchangeContractRic = await RIC.methods.balanceOf(exchangeContract).call();
 		const endDateTimestamp = Date.now() + (exchangeContractRic / subsidyRate) * 1000;
@@ -138,10 +139,10 @@ export function* sweepQueryFlow(): any {
 			// usdcRicPlaceholder, flowsOwned),
 		};
 	}
-
+	debugger;
 	const usdcRicFlowQuery = buildFlowQuery(FlowEnum.usdcRicFlowQuery);
-	const ricRexShirtFlowQuery = buildFlowQuery(FlowEnum.ricRexShirtFlowQuery);
-	const ricRexHatFlowQuery = buildFlowQuery(FlowEnum.ricRexHatFlowQuery);
+	// const ricRexShirtFlowQuery = buildFlowQuery(FlowEnum.ricRexShirtFlowQuery);
+	// const ricRexHatFlowQuery = buildFlowQuery(FlowEnum.ricRexHatFlowQuery);
 	const twoWayusdcWethFlowQuery = buildFlowQuery(FlowEnum.twoWayusdcWethFlowQuery);
 	const twoWayusdcWbtcFlowQuery = buildFlowQuery(FlowEnum.twoWayusdcWbtcFlowQuery);
 	const twoWaywethUsdcFlowQuery = buildFlowQuery(FlowEnum.twoWaywethUsdcFlowQuery);
@@ -158,8 +159,12 @@ export function* sweepQueryFlow(): any {
 	}
 
 	usdcRicFlowQuery.subsidyRate = yield call(getSubsidyRateFromQuery, usdcRicFlowQuery);
-	ricRexShirtFlowQuery.subsidyRate = yield call(getSubsidyRateFromQuery, ricRexShirtFlowQuery);
-	ricRexHatFlowQuery.subsidyRate = yield call(getSubsidyRateFromQuery, ricRexHatFlowQuery);
+
+	// ricRexShirtFlowQuery is returning an error which I think stops this from updating values?
+	// ricRexShirtFlowQuery.subsidyRate = yield call(getSubsidyRateFromQuery, ricRexShirtFlowQuery);
+	// ricRexHatFlowQuery is returning an error which I think stops this from updating values?
+	// ricRexHatFlowQuery.subsidyRate = yield call(getSubsidyRateFromQuery, ricRexHatFlowQuery);
+
 	twoWayusdcWethFlowQuery.subsidyRate = yield call(getSubsidyRateFromQuery, twoWayusdcWethFlowQuery);
 	twoWayusdcWbtcFlowQuery.subsidyRate = yield call(getSubsidyRateFromQuery, twoWayusdcWbtcFlowQuery);
 	twoWaywethUsdcFlowQuery.subsidyRate = yield call(getSubsidyRateFromQuery, twoWaywethUsdcFlowQuery);
@@ -174,8 +179,8 @@ export function* sweepQueryFlow(): any {
 	yield put(
 		mainSetState({
 			usdcRicFlowQuery,
-			ricRexShirtFlowQuery,
-			ricRexHatFlowQuery,
+			// ricRexShirtFlowQuery,
+			// ricRexHatFlowQuery,
 			twoWayusdcWethFlowQuery,
 			twoWayusdcWbtcFlowQuery,
 			twoWaywethUsdcFlowQuery,

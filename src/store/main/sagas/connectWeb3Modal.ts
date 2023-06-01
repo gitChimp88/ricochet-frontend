@@ -12,6 +12,7 @@ import { store } from '../../index';
 // import { getProvider } from 'utils/getSafeInfo';
 
 export function* connectWeb3Modal(): any {
+	debugger;
 	try {
 		const providerOptions = {
 			walletconnect: {
@@ -78,7 +79,8 @@ export function* connectWeb3Modal(): any {
 		const chainId = yield call(web3.eth.net.getId);
 		if (chainId === Number(process.env.REACT_APP_CHAIN_ID)) {
 			yield put(modalHide());
-			yield put(mainGetData());
+			// calling the below seperately in App useEffect
+			// yield put(mainGetData());
 		} else {
 			// Run modal switch network
 			yield put(modalShow(ModalType.Network));

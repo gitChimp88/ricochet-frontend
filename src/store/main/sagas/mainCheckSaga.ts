@@ -17,13 +17,15 @@ export function* mainCheckSaga() {
 		const readWeb3 = new Web3(new Web3.providers.HttpProvider(process.env.REACT_APP_API_NODE_URL!));
 		// Check we are inside gnosis safe
 		if (gnosisSafeProvider) {
+			debugger;
 			yield put(mainSetState({ readWeb3, web3: new Web3(gnosisSafeProvider! as any) }));
 			const connectedSafe: Unwrap<typeof getConnectedSafe> = yield call(getConnectedSafe);
 			const chainId = connectedSafe?.chainId;
 			// Check we are on polygon chain
 			if (chainId === Number(process.env.REACT_APP_CHAIN_ID)) {
 				yield put(modalHide());
-				yield put(mainGetData());
+				// below now called in app when web3 is set in state
+				// yield put(mainGetData());
 			} else {
 				// Run modal switch network
 				yield put(modalShow(ModalType.Network));
@@ -31,12 +33,14 @@ export function* mainCheckSaga() {
 			gnosisSafeProvider?.on('chainChanged', () => store.dispatch(mainCheck()));
 			gnosisSafeProvider?.on('accountsChanged', () => store.dispatch(mainGetData()));
 		} else if (ledgerHQFrame.isLedgerApp()) {
+			debugger;
 			const ledgerProvider: Unwrap<typeof getLedgerProvider> = yield call(getLedgerProvider, ledgerHQFrame);
 			const chainId: Unwrap<typeof getLedgerChainId> = yield call(getLedgerChainId, ledgerHQFrame);
 			yield put(mainSetState({ readWeb3, web3: new Web3(ledgerProvider! as any) }));
 			if (parseInt(chainId.toString(), 16) === Number(process.env.REACT_APP_CHAIN_ID)) {
 				yield put(modalHide());
-				yield put(mainGetData());
+				// below now called in app when web3 is set in state
+				// yield put(mainGetData());
 			} else {
 				// Run modal switch network
 				yield put(modalShow(ModalType.Network));
@@ -46,6 +50,7 @@ export function* mainCheckSaga() {
 		} else if (localStorage.getItem('WEB3_CONNECT_CACHED_PROVIDER')) {
 			yield put(connectWeb3Modal());
 		} else {
+			debugger;
 			yield put(
 				mainSetState({
 					web3: readWeb3,

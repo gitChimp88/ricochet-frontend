@@ -10,6 +10,7 @@ import { startFlowAction } from '../actionCreators';
 import { selectMain } from '../selectors';
 
 export function* startFlowSaga({ payload }: ReturnType<typeof startFlowAction>) {
+	debugger;
 	try {
 		const main: ReturnType<typeof selectMain> = yield select(selectMain);
 		const { web3 } = main;
@@ -27,6 +28,7 @@ export function* startFlowSaga({ payload }: ReturnType<typeof startFlowAction>) 
 			web3,
 			config?.referralId ?? '',
 		);
+
 		payload.callback();
 		yield call(sweepQueryFlow);
 	} catch (e) {

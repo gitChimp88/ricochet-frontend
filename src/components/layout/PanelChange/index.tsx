@@ -398,7 +398,7 @@ export const PanelChange: FC<IProps> = ({
 										</>
 									)}
 									<span>
-										{(personalFlow || 0) > 0 && (balanceA || 0) > 0 && (
+										{(Number(personalFlow) || 0) > 0 && (Number(balanceA) || 0) > 0 && (
 											<div className={styles.stream_values}>
 												{`${'Runs out on'} ${streamEnd}`}
 											</div>

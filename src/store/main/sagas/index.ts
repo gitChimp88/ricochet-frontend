@@ -1,4 +1,4 @@
-import { takeEvery, takeLeading } from 'redux-saga/effects';
+import { takeEvery, takeLeading, takeLatest } from 'redux-saga/effects';
 import { MainActionTypes } from '../actionTypes';
 import { downgradeMainSaga } from './downgradeSaga';
 import { loadData } from './loadData';
@@ -7,6 +7,7 @@ import { upgradeMainSaga } from './upgradeSaga';
 import { stopFlowSaga } from './stopFlow';
 import { startFlowSaga } from './startFlow';
 import { mainCheckSaga } from './mainCheckSaga';
+import { sweepQueryFlow } from './sweepQueryFlow';
 import { switchNetworkSaga } from './switchNetworkSaga';
 import { aggregatedRICRewards } from './aggregateRICRewards';
 import { selectDowngradeCoinSaga, selectUpgradeCoinSaga, showTokenListSaga } from './selectCoinSaga';
@@ -17,8 +18,8 @@ import { updateHistory } from './updateHistory';
 export default function* mainSaga() {
 	yield takeLeading(MainActionTypes.MAIN_CHECK, mainCheckSaga);
 	yield takeLeading(MainActionTypes.MAIN_SWITCH_NETWORK, switchNetworkSaga);
-	yield takeLeading(MainActionTypes.MAIN_SWITCH_NETWORK, switchNetworkSaga);
-	yield takeEvery(MainActionTypes.LOAD_DATA, loadData);
+
+	yield takeLatest(MainActionTypes.LOAD_DATA, loadData);
 	//@ts-ignore
 	yield takeLeading(MainActionTypes.ADD_REWARD, aggregatedRICRewards);
 	//@ts-ignore
