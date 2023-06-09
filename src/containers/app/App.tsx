@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { MainRouter } from 'containers/MainRouter';
 import { useDispatch } from 'react-redux';
-import { mainCheck, mainGetData } from 'store/main/actionCreators';
+import { mainCheck, mainGetData, sweepQuery } from 'store/main/actionCreators';
 import { Modal } from 'components/common/Modal';
 import { MainLayout } from 'containers/MainLayout';
 import { HashRouter } from 'react-router-dom';
@@ -22,6 +22,7 @@ const App: React.FC = () => {
 		console.log('web3 - ', web3);
 		if (web3.currentProvider) {
 			dispatch(mainGetData());
+			dispatch(sweepQuery());
 		}
 	}, [dispatch, web3]);
 

@@ -4,9 +4,9 @@ import {
 	USDCxAddress,
 	WBTCxAddress,
 	WETHxAddress,
-	StIbAlluoETHAddress,
-	StIbAlluoUSDAddress,
-	StIbAlluoBTCAddress,
+	// StIbAlluoETHAddress,
+	// StIbAlluoUSDAddress,
+	// StIbAlluoBTCAddress,
 	RICAddress,
 } from '../constants/polygon_config';
 import axios from 'axios';
@@ -20,9 +20,9 @@ const coingeckoIds = new Map<string, string>([
 	[RICAddress, 'richochet'],
 	// TODO: These prices need to be multiplied by the growingRatio
 	// from these contracts since 1 ibAlluoUSD > 1 USD
-	[StIbAlluoETHAddress, 'weth'],
-	[StIbAlluoUSDAddress, 'usd-coin'],
-	[StIbAlluoBTCAddress, 'wrapped-bitcoin'],
+	// [StIbAlluoETHAddress, 'weth'],
+	// [StIbAlluoUSDAddress, 'usd-coin'],
+	// [StIbAlluoBTCAddress, 'wrapped-bitcoin'],
 ]);
 
 async function getPrices() {

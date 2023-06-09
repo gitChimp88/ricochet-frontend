@@ -5,7 +5,7 @@ import { call, select } from 'redux-saga/effects';
 import { Unwrap } from 'types/unwrap';
 import { getContract } from 'utils/getContract';
 import { transformError } from 'utils/transformError';
-import { sweepQueryFlow } from './sweepQueryFlow';
+// import { sweepQueryFlow } from './sweepQueryFlow';
 import { startFlowAction } from '../actionCreators';
 import { selectMain } from '../selectors';
 
@@ -30,7 +30,7 @@ export function* startFlowSaga({ payload }: ReturnType<typeof startFlowAction>) 
 		);
 
 		payload.callback();
-		yield call(sweepQueryFlow);
+		// yield call(sweepQueryFlow);
 	} catch (e) {
 		// console.error(e);
 		const error = transformError(e);

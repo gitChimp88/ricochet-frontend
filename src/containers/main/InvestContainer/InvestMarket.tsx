@@ -20,7 +20,7 @@ type InvestMarketProps = {
 export const InvestMarket: FC<InvestMarketProps> = ({ handleStart, handleStop }) => {
 	const state = useShallowSelector(selectMain);
 	const userStreams = useShallowSelector(selectUserStreams);
-	const { balances, isLoading, coingeckoPrices } = state;
+	const { balances, isLoading, coingeckoPrices, chainlinkPrices } = state;
 	const [filteredList, setFilteredList] = useState(flowConfig);
 	const [aggregatedRewards, setAggregatedRewards] = useState<number[]>([]);
 	const { aggregatedRICRewards } = useShallowSelector(selectMain);
@@ -143,6 +143,9 @@ export const InvestMarket: FC<InvestMarketProps> = ({ handleStart, handleStop })
 		setFilteredList(filteredData);
 	}
 
+	console.log('main state - ', state);
+	console.log('coingeckoPrices - ', coingeckoPrices);
+	console.log('chainlinkPrices - ', chainlinkPrices);
 	return (
 		<>
 			<div className={styles.input_wrap}>
@@ -184,6 +187,7 @@ export const InvestMarket: FC<InvestMarketProps> = ({ handleStart, handleStop })
 								onClickStop={handleStop(element)}
 								coinA={element.coinA}
 								coingeckoPrice={coingeckoPrices ? coingeckoPrices[element.tokenA] : 0}
+								chainlinkPrice={chainlinkPrices ? chainlinkPrices[element.tokenA] : 0}
 								coinB={element.coinB}
 								tokenA={element.tokenA}
 								tokenB={element.tokenB}

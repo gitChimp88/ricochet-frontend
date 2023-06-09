@@ -11,6 +11,10 @@ export const mainCheck = () => ({
 	type: MainActionTypes.MAIN_CHECK,
 });
 
+export const sweepQuery = () => ({
+	type: MainActionTypes.SWEEP_QUERY_FLOW,
+});
+
 export const connectWeb3Modal = () => ({
 	type: MainActionTypes.CONNECT_WEB3_MODAL,
 });

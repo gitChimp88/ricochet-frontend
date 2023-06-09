@@ -1,4 +1,4 @@
-import { all, call, put, select } from 'redux-saga/effects';
+import { call, put, select } from 'redux-saga/effects';
 import { Unwrap } from 'types/unwrap';
 import { getAddress } from 'utils/getAddress';
 import { mainGetData, mainSetState } from '../actionCreators';
@@ -8,17 +8,14 @@ import {
 	checkIfApproveUsdc,
 	checkIfApproveWbtc,
 	checkIfApproveWeth,
-	checkIfApproveIbAlluoUSD,
-	checkIfApproveIbAlluoETH,
-	checkIfApproveIbAlluoBTC,
 } from './checkIfApprove';
 import { getBalances } from './getBalances';
-import { sweepQueryFlow } from './sweepQueryFlow';
+// import { sweepQueryFlow } from './sweepQueryFlow';
 import { selectMain } from '../selectors';
 import { getCoingeckoPrices } from '../../../utils/getCoingeckoPrices';
+import { getChainlinkPrices } from '../../../utils/priceFeeds/getPriceFeed';
 
 export function* loadData() {
-	debugger;
 	try {
 		console.log('loadData');
 		yield put(mainSetState({ isLoading: true, isReadOnly: false }));
@@ -29,6 +26,10 @@ export function* loadData() {
 		console.log('address: ', address);
 		yield put(mainSetState({ address }));
 		const coingeckoPrices: Unwrap<typeof getCoingeckoPrices> = yield call(getCoingeckoPrices);
+
+		const chainlinkPrices: Unwrap<typeof getChainlinkPrices> = yield call(getChainlinkPrices);
+
+		console.log('chainlinkPrices: ', chainlinkPrices);
 		console.log('coingeckoPrices: ', coingeckoPrices);
 		yield call(getBalances, address);
 
@@ -37,16 +38,14 @@ export function* loadData() {
 		yield call(checkIfApproveWeth);
 		yield call(checkIfApproveWbtc);
 		yield call(checkIfApproveMatic);
-		yield call(checkIfApproveIbAlluoUSD);
-		yield call(checkIfApproveIbAlluoETH);
-		yield call(checkIfApproveIbAlluoBTC);
 		debugger;
-		yield call(sweepQueryFlow);
+		// yield call(sweepQueryFlow);
 
 		yield put(
 			mainSetState({
 				address,
 				coingeckoPrices,
+				chainlinkPrices,
 				isLoading: false,
 			}),
 		);

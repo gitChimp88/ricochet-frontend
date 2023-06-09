@@ -14,6 +14,7 @@ export const mainInitialState: Readonly<MainState> = {
 	isLoadingDowngrade: false,
 	isLoadingUpgrade: false,
 	isLoading: true,
+	flowStateLoading: true,
 	isReadOnly: false,
 	aggregatedRICRewards: '0',
 	linkHistory: [],

@@ -13,12 +13,6 @@ import {
 	WETHxAddress,
 	WBTCAddress,
 	WBTCxAddress,
-	IbAlluoETHAddress,
-	StIbAlluoETHAddress,
-	IbAlluoBTCAddress,
-	StIbAlluoBTCAddress,
-	IbAlluoUSDAddress,
-	StIbAlluoUSDAddress,
 } from 'constants/polygon_config';
 import { upgradeTokensList } from 'constants/upgradeConfig';
 import { mainSetState } from '../actionCreators';
@@ -35,10 +29,7 @@ export function* checkIfApprove(
 		| 'hasMaticApprove'
 		| 'hasMkrApprove'
 		| 'hasSushiApprove'
-		| 'hasIdleApprove'
-		| 'hasIbAlluoETHApprove'
-		| 'hasIbAlluoBTCApprove'
-		| 'hasIbAlluoUSDApprove',
+		| 'hasIdleApprove',
 ) {
 	const main: ReturnType<typeof selectMain> = yield select(selectMain);
 	const { web3 } = main;
@@ -66,18 +57,6 @@ export function* checkIfApproveDai() {
 
 export function* checkIfApproveWbtc() {
 	yield call(checkIfApprove, WBTCAddress, WBTCxAddress, 'hasWbtcApprove');
-}
-
-export function* checkIfApproveIbAlluoETH() {
-	yield call(checkIfApprove, IbAlluoETHAddress, StIbAlluoETHAddress, 'hasIbAlluoETHApprove');
-}
-
-export function* checkIfApproveIbAlluoBTC() {
-	yield call(checkIfApprove, IbAlluoBTCAddress, StIbAlluoBTCAddress, 'hasIbAlluoBTCApprove');
-}
-
-export function* checkIfApproveIbAlluoUSD() {
-	yield call(checkIfApprove, IbAlluoUSDAddress, StIbAlluoUSDAddress, 'hasIbAlluoUSDApprove');
 }
 
 export function* checkIfApproveMatic() {

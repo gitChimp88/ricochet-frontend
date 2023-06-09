@@ -147,6 +147,23 @@ export const startFlow = async (
 					? await framework.cfaV1.updateFlow(transactionData).exec(signer)
 					: await framework.cfaV1.createFlow(transactionData).exec(signer);
 			console.log(tx);
+
+			// try and get flow information from the sdk
+			// const maticx = await framework.loadSuperToken('0x3aD736904E9e65189c3000c7DD2c8AC8bB7cD4e3');
+			// let res = await maticx.getFlow({
+			// 	sender: '0x0b8F6e3FcD78C0258ad4a69f11057E6586576d34',
+			// 	receiver: '0x035820365D442dc273a64a354642c41DdedaDF92',
+			// 	providerOrSigner: signer,
+			// });
+
+			const res = await framework.cfaV1.getFlow({
+				superToken: inputTokenAddress,
+				sender: address,
+				receiver: exchangeAddress,
+				providerOrSigner: provider,
+			});
+			console.log('flow - ', res);
+
 			return tx;
 		} else {
 			debugger;
@@ -373,4 +390,32 @@ export const approveToken = async (
 		.catch((error: string) => console.log(error));
 
 	return approveRes;
+};
+
+export const getFlow = async (web3: Web3, token: any, exchangeAddress: string) => {
+	try {
+		const address = await getAddress(web3);
+		const framework = await getSFFramework(web3);
+		const provider = new ethers.providers.Web3Provider(web3.currentProvider as any);
+
+		const userFlow = await framework.cfaV1.getFlow({
+			superToken: token,
+			sender: address,
+			receiver: exchangeAddress, // exchange address
+			providerOrSigner: provider,
+		});
+
+		const flowAmount = ((Number(userFlow.flowRate) / 10 ** 18) * (30 * 24 * 60 * 60)).toFixed(6);
+
+		// console.log('userFlow - ', userFlow);
+		// console.log('flowAmount - ', flowAmount);
+		return flowAmount;
+	} catch (error: any) {
+		console.log('Error with getFlow() ethereum.ts - ', error);
+		if (error.type === 'FRAMEWORK_INITIALIZATION') {
+			// If this error happens then keep calling until we get a result
+			// checking with superfluid how we can stop this error for the time being
+			getFlow(web3, token, exchangeAddress);
+		}
+	}
 };

@@ -15,9 +15,6 @@ import {
 	checkIfApproveWeth,
 	checkIfApproveWbtc,
 	checkIfApproveMatic,
-	checkIfApproveIbAlluoETH,
-	checkIfApproveIbAlluoBTC,
-	checkIfApproveIbAlluoUSD,
 } from './checkIfApprove';
 import { getBalances } from './getBalances';
 import { selectMain } from '../selectors';
@@ -50,9 +47,6 @@ export function* upgradeMainSaga({ payload }: ReturnType<typeof upgradeAction>) 
 			call(checkIfApproveWeth),
 			call(checkIfApproveWbtc),
 			call(checkIfApproveMatic),
-			call(checkIfApproveIbAlluoETH),
-			call(checkIfApproveIbAlluoUSD),
-			call(checkIfApproveIbAlluoBTC),
 		]);
 	} catch (e) {
 		const error = transformError(e);

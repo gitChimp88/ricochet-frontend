@@ -6,8 +6,8 @@ import { approveMainSaga } from './approveSaga';
 import { upgradeMainSaga } from './upgradeSaga';
 import { stopFlowSaga } from './stopFlow';
 import { startFlowSaga } from './startFlow';
-import { mainCheckSaga } from './mainCheckSaga';
 import { sweepQueryFlow } from './sweepQueryFlow';
+import { mainCheckSaga } from './mainCheckSaga';
 import { switchNetworkSaga } from './switchNetworkSaga';
 import { aggregatedRICRewards } from './aggregateRICRewards';
 import { selectDowngradeCoinSaga, selectUpgradeCoinSaga, showTokenListSaga } from './selectCoinSaga';
@@ -20,6 +20,7 @@ export default function* mainSaga() {
 	yield takeLeading(MainActionTypes.MAIN_SWITCH_NETWORK, switchNetworkSaga);
 
 	yield takeLatest(MainActionTypes.LOAD_DATA, loadData);
+	yield takeLatest(MainActionTypes.SWEEP_QUERY_FLOW, sweepQueryFlow);
 	//@ts-ignore
 	yield takeLeading(MainActionTypes.ADD_REWARD, aggregatedRICRewards);
 	//@ts-ignore

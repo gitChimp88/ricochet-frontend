@@ -8,6 +8,7 @@ export type MainState = {
 	address: string;
 	balances?: { [key: string]: string };
 	coingeckoPrices?: { [key: string]: number };
+	chainlinkPrices?: { [key: string]: number | undefined };
 	hasUsdcApprove?: boolean;
 	hasDaiApprove?: boolean;
 	hasMkrApprove?: boolean;
@@ -259,6 +260,7 @@ export type MainState = {
 	isLoadingDowngrade: boolean;
 	isLoadingUpgrade: boolean;
 	isLoading: boolean;
+	flowStateLoading: boolean;
 	selectedDowngradeCoin: Coin;
 	selectedUpgradeCoin: Coin;
 	coinType: Coin;

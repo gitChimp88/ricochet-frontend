@@ -29,6 +29,9 @@ import { CoinRateForm } from '../CoinRateForm';
 import LpAPY from '../../common/LpAPY';
 import Price from '../../common/Price';
 import styles from './styles.module.scss';
+import { useDispatch } from 'react-redux';
+import { sweepQuery, mainSetState } from 'store/main/actionCreators';
+import { Loader } from '../../common/Loader';
 
 TimeAgo.addDefaultLocale(en);
 
@@ -41,6 +44,7 @@ interface IProps {
 	tokenA: string;
 	tokenB: string;
 	coingeckoPrice: number;
+	chainlinkPrice: number | undefined;
 	balanceA?: string;
 	balanceB?: string;
 	totalFlow?: string;
@@ -65,6 +69,7 @@ export const PanelChange: FC<IProps> = ({
 	placeholder,
 	coinA,
 	coingeckoPrice,
+	chainlinkPrice,
 	coinB,
 	tokenA,
 	tokenB,
@@ -85,8 +90,9 @@ export const PanelChange: FC<IProps> = ({
 	streamedSoFar,
 	receivedSoFar,
 }) => {
+	const dispatch = useDispatch();
 	const link = getAddressLink(contractAddress);
-	const { web3, address, linkHistory } = useShallowSelector(selectMain);
+	const { web3, address, linkHistory, flowStateLoading } = useShallowSelector(selectMain);
 	const [inputShow, setInputShow] = useState(false);
 	const [value, setValue] = useState('');
 	const [isLoading, setIsLoading] = useState(true);
@@ -223,6 +229,18 @@ export const PanelChange: FC<IProps> = ({
 		};
 	}, [web3, exchangeKey]);
 
+	useEffect(() => {
+		if (isLoading === false) {
+			// set flowStateLoading to true
+			dispatch(mainSetState({ flowStateLoading: true }));
+			setTimeout(() => {
+				// call sweepQueryFlow in here
+				// added a delay on the call because sometimes it hasn't updated yet (slow network)
+				dispatch(sweepQuery());
+			}, 12000);
+		}
+	}, [isLoading, dispatch, web3]);
+
 	function getFormattedNumber(num: string) {
 		return parseFloat(num)
 			.toString()
@@ -230,7 +248,7 @@ export const PanelChange: FC<IProps> = ({
 	}
 
 	function getFlowUSDValue(flow: string, toFixed: number = 0) {
-		return (parseFloat(flow as string) * coingeckoPrice).toFixed(toFixed);
+		return (parseFloat(flow as string) * chainlinkPrice!).toFixed(toFixed);
 	}
 
 	const toggleInputShow = useCallback(() => {
@@ -304,6 +322,9 @@ export const PanelChange: FC<IProps> = ({
 	};
 
 	const uuid = new Date().getTime().toString(36) + Math.random().toString(36).slice(2);
+
+	console.log('coingecko price - ', coingeckoPrice);
+	console.log('chainlink price - ', chainlinkPrice);
 	return (
 		<>
 			<section className={styles.panel}>
@@ -341,12 +362,22 @@ export const PanelChange: FC<IProps> = ({
 								<div className={styles.stream}>
 									<span>
 										<span className={styles.number}>
-											{`$${personalFlow && getFlowUSDValue(personalFlow)} ${'per month'}`}
+											{flowStateLoading ? (
+												<Loader />
+											) : (
+												`$${personalFlow && getFlowUSDValue(personalFlow)} ${'per month'}`
+											)}
 										</span>
 									</span>
 									<div>
 										<span className={styles.token_amounts}>
-											<span>{`${personalFlow && personalFlow} ${coinA}x / ${'Month'}`}</span>
+											<span>
+												{flowStateLoading ? (
+													<Loader />
+												) : (
+													`${personalFlow && personalFlow} ${coinA}x / ${'Month'}`
+												)}
+											</span>
 										</span>
 									</div>
 									{streamedSoFar && (
